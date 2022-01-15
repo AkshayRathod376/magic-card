@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import SingleCard from './components/SingleCard';
 
 
 
@@ -16,6 +17,8 @@ function App() {
 
   const [cards,setCards]  = useState([]);
   const [terns, setTerns] = useState(0);
+  const [choice1, setChoice1] = useState(null);
+  const [choice2, setChoice2] = useState(null);
 
    //shuffel cards
    const shuffelCards= ()=>{
@@ -27,8 +30,10 @@ function App() {
       setTerns(0);
    }
 
-   console.log(cards,terns);
-
+//handleChoice function
+   const handleChoice = (card)=>{
+        console.log(card)
+   }
 
 
   return (
@@ -38,10 +43,7 @@ function App() {
 
       <div className='card-grid'>
         {cards.map(card=>(
-          <div className='card' key={card.id}>
-              <img src={card.src} className='front' alt='front-card' />
-              <img src="img/cover.png" className='back' alt='back-card' />
-          </div>
+          <SingleCard cards ={card} key={card.id} handleChoice= {handleChoice} />
         ))}
       </div>
     </div>
