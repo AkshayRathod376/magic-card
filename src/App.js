@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SingleCard from './components/SingleCard';
 
 
@@ -32,7 +32,35 @@ function App() {
 
 //handleChoice function
    const handleChoice = (card)=>{
-        console.log(card)
+     //choose which card is selected
+     choice1 ? setChoice2(card) :setChoice1(card);
+
+   }
+
+   //compair two selected cards
+   useEffect(() => {
+
+    if(choice1 && choice2){
+
+      if(choice1.src===choice2.src){
+        console.log("cards are match");
+        resetTerns();
+      }else{
+        console.log("cards so not match");
+        resetTerns();
+      }
+
+    }
+    
+   }, [choice1,choice2])
+
+   //Resetterms function and increase ter
+   const resetTerns =()=>{
+      setChoice1(null);
+      setChoice2(null);
+      setTerns((prevTerns)=>{
+        return (prevTerns+1)
+      })
    }
 
 
