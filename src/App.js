@@ -26,6 +26,8 @@ const [disabled, setDisabled] = useState(false)
      .sort(()=> Math.random()-0.5)
      .map((card)=>({...card, id: Math.random() } ));
 
+     setChoice1(null);
+     setChoice2(null);
       setCards(shuffelCards);
       setTerns(0);
    }
@@ -60,6 +62,11 @@ const [disabled, setDisabled] = useState(false)
     
    }, [choice1,choice2])
 
+
+   useEffect(() => {
+    shuffelCards()
+   }, [])
+
    console.log(cards);
 
    //Resetterms function and increase ter
@@ -89,6 +96,8 @@ const [disabled, setDisabled] = useState(false)
           />
         ))}
       </div>
+
+      <h1>{terns}</h1>
     </div>
   );
 }
