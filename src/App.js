@@ -19,7 +19,7 @@ function App() {
   const [terns, setTerns] = useState(0);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
-
+const [disabled, setDisabled] = useState(false)
    //shuffel cards
    const shuffelCards= ()=>{
      const shuffelCards = [...cardImages, ...cardImages]
@@ -39,9 +39,8 @@ function App() {
 
    //compair two selected cards
    useEffect(() => {
-
     if(choice1 && choice2){
-
+      setDisabled(true)
       if(choice1.src===choice2.src){
         setCards((prevCards)=>{
         return  prevCards.map(card=>{
@@ -70,6 +69,7 @@ function App() {
       setTerns((prevTerns)=>{
         return (prevTerns+1)
       })
+      setDisabled(false);
    }
 
 
@@ -85,6 +85,7 @@ function App() {
           key={card.id} 
           handleChoice= {handleChoice}
           flipped={ card === choice1 || card === choice2 || card.matched}
+          disabled ={disabled}
           />
         ))}
       </div>
