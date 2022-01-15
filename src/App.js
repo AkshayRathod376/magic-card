@@ -54,7 +54,7 @@ function App() {
         })
         resetTerns();
       }else{
-        resetTerns();
+        setTimeout(()=>{return resetTerns()},1000)
       }
 
     }
@@ -80,7 +80,12 @@ function App() {
 
       <div className='card-grid'>
         {cards.map(card=>(
-          <SingleCard cards ={card} key={card.id} handleChoice= {handleChoice} />
+          <SingleCard 
+          cards ={card} 
+          key={card.id} 
+          handleChoice= {handleChoice}
+          flipped={ card === choice1 || card === choice2 || card.matched}
+          />
         ))}
       </div>
     </div>
